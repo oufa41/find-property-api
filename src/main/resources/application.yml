@@ -1,0 +1,3 @@
+spring:
+  datasource.url: localhost:27017
+  datasource.database: find-property
