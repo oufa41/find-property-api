@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.find.property.dto.PropertyDtoV1;
+import com.example.find.property.dto.Views;
 import com.example.find.property.service.PropertyService;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import io.swagger.annotations.ApiParam;
 
@@ -42,6 +44,7 @@ public class PropertyController {
 	 */
 	@PostMapping("")
 	@ResponseStatus(HttpStatus.CREATED)
+	@JsonView(Views.Detail.class)
 	public PropertyDtoV1 createProperty(
 			@ApiParam(name = "property", type = "PropertyDtoV1", value = "Property to be created", allowMultiple = false) @RequestBody(required = true) PropertyDtoV1 propertyDtoV1) {
 		return propertyService.createProperty(propertyDtoV1);
@@ -53,6 +56,7 @@ public class PropertyController {
 	 */
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
+	@JsonView(Views.Basic.class)
 	public List<PropertyDtoV1> getAllProperty() {
 		return propertyService.getAllProperties();
 	}
@@ -64,6 +68,7 @@ public class PropertyController {
 	 */
 	@GetMapping("{propertyId}")
 	@ResponseStatus(HttpStatus.OK)
+	@JsonView(Views.Detail.class)
 	public PropertyDtoV1 getProperty(@PathVariable int propertyId) {
 		return propertyService.getProperty(propertyId);
 	}
@@ -76,6 +81,7 @@ public class PropertyController {
 	 */
 	@PutMapping("{propertyId}")
 	@ResponseStatus(HttpStatus.CREATED)
+	@JsonView(Views.Detail.class)
 	public PropertyDtoV1 updateProperty(@PathVariable int propertyId,
 			@ApiParam(name = "property", type = "PropertyDtoV1", value = "Property to be created", allowMultiple = false) @RequestBody(required = true) PropertyDtoV1 propertyDtoV1) {
 		return propertyService.updatePropertyDtoV1(propertyId, propertyDtoV1);
