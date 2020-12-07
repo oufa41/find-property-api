@@ -6,10 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.find.property.domain.Property;
 import com.example.find.property.dto.PropertyDtoV1;
 import com.example.find.property.exceptions.RecordNotFoundException;
 import com.example.find.property.mapper.EntityMapper;
+import com.example.find.property.model.Property;
 import com.example.find.property.repository.PropertyRepository;
 
 /**

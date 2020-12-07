@@ -1,8 +1,12 @@
 package com.example.find.property.repository;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
+import java.util.List;
 
-import com.example.find.property.domain.Property;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
+
+import com.example.find.property.model.Property;
+import com.example.find.property.model.SellingType;
 
 /**
  * 
@@ -10,5 +14,8 @@ import com.example.find.property.domain.Property;
  *
  */
 public interface PropertyRepository extends MongoRepository<Property, Integer> {
+
+	@Query("{'sellingType': ?0}")
+	List<Property> findBySellingType(SellingType sellingType);
 
 }

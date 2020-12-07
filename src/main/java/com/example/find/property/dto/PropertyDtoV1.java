@@ -1,5 +1,11 @@
 package com.example.find.property.dto;
 
+import java.util.List;
+
+import com.example.find.property.model.Amenities;
+import com.example.find.property.model.Photo;
+import com.example.find.property.model.SellingType;
+
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,11 +22,27 @@ import lombok.NoArgsConstructor;
 public class PropertyDtoV1 {
 	
 	
-	public int id;
+private int id;
+    
+	private String title;
+    
+	private SellingType sellingType;
 	
-	public String name;
+	private long price;
 	
-	public String address;
+	private int size;
+	
+	private AddressDtoV1 address;
+	
+	private List<Photo> photos;
+	
+	private AgentDtoV1 agent;
+	
+	private Amenities amenities;
+	
+	private int numberBedrooms;
+	
+	private int numberBathrooms;
 	
 	
 }
