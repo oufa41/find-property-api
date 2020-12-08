@@ -2,6 +2,7 @@ package com.example.find.property.service;
 import java.util.List;
 
 import com.example.find.property.dto.PropertyDtoV1;
+import com.example.find.property.model.SellingType;
 
 
 /**
@@ -35,7 +36,7 @@ public interface PropertyService {
 	 * Retrieving all properties from the database
 	 * @return the list of all properties object
 	 */
-	public List<PropertyDtoV1> getAllProperties();
+	public List<PropertyDtoV1> getAllProperties(String title, String city, SellingType type);
 	
 	
 	

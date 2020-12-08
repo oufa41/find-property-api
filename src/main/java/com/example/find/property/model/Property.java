@@ -3,6 +3,8 @@ package com.example.find.property.model;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Getter;
@@ -21,12 +23,15 @@ public class Property {
     @Id
 	private int id;
     
+    @TextIndexed(weight = 20)
 	private String title;
     
 	private SellingType sellingType;
 	
+	@Indexed
 	private long price;
 	
+	@Indexed
 	private int size;
 	
 	private Address address;

@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.find.property.dto.PropertyDtoV1;
 import com.example.find.property.dto.Views;
+import com.example.find.property.model.SellingType;
 import com.example.find.property.service.PropertyService;
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -57,8 +59,12 @@ public class PropertyController {
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
 	@JsonView(Views.Basic.class)
-	public List<PropertyDtoV1> getAllProperty() {
-		return propertyService.getAllProperties();
+	public List<PropertyDtoV1> getAllProperty(
+			@ApiParam(value = "Property Title") @RequestParam(value = "title", required = false) String title,
+			@ApiParam(value = "Property Address City") @RequestParam(value = "city", required = false) String city,
+			@ApiParam(value = "Selling Type of Property") @RequestParam(value = "type", required = false) SellingType type
+			) {
+		return propertyService.getAllProperties(title, city, type);
 	}
 
 	/**

@@ -3,7 +3,6 @@ package com.example.find.property.repository;
 import java.util.List;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.mongodb.repository.Query;
 
 import com.example.find.property.model.Property;
 import com.example.find.property.model.SellingType;
@@ -15,7 +14,12 @@ import com.example.find.property.model.SellingType;
  */
 public interface PropertyRepository extends MongoRepository<Property, Integer> {
 
-	@Query("{'sellingType': ?0}")
 	List<Property> findBySellingType(SellingType sellingType);
 
+	List<Property> findByTitleLikeIgnoreCase(String title);
+	
+	List<Property> findByAddressCityIgnoreCase(String city);
+	
+	List<Property> findByAddressLikeIgnoreCase(String town);
+	
 }
