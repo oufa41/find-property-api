@@ -60,11 +60,10 @@ public class PropertyController {
 	@ResponseStatus(HttpStatus.OK)
 	@JsonView(Views.Basic.class)
 	public List<PropertyDtoV1> getAllProperty(
-			@ApiParam(value = "Property Title") @RequestParam(value = "title", required = false) String title,
-			@ApiParam(value = "Property Address City") @RequestParam(value = "city", required = false) String city,
-			@ApiParam(value = "Selling Type of Property") @RequestParam(value = "type", required = false) SellingType type
-			) {
-		return propertyService.getAllProperties(title, city, type);
+			@ApiParam(value = "Property Address") @RequestParam(value = "address", required = false) String addressKeyword,
+			@ApiParam(value = "Selling Type of Property") @RequestParam(value = "type", required = false) SellingType type,
+			@ApiParam(value = "Property Title") @RequestParam(value = "title", required = false) String title) {
+		return propertyService.getAllProperties(addressKeyword, type, title);
 	}
 
 	/**
@@ -102,7 +101,7 @@ public class PropertyController {
 	@DeleteMapping("{propertyId}")
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<Integer> deleteProperty(@PathVariable int propertyId) {
-		
+
 		propertyService.deleteProperty(propertyId);
 		return new ResponseEntity<Integer>(propertyId, HttpStatus.OK);
 	}

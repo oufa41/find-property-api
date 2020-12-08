@@ -1,6 +1,5 @@
 package com.example.find.property.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,7 +31,7 @@ public class PropertyServiceImpl implements PropertyService {
 
 	@Autowired
 	public EntityMapper<PropertyDtoV1, Property> propertyMapper;
-	
+
 	@Autowired
 	public EntityMapper<AddressDtoV1, Address> addressMapper;
 
@@ -44,20 +43,18 @@ public class PropertyServiceImpl implements PropertyService {
 	}
 
 	@Override
-	public List<PropertyDtoV1> getAllProperties(String title, String city, SellingType type) {
-		List<Property> properties = new ArrayList<Property>();
-		if (!StringUtils.isBlank(city)) {
-			properties = propertyRepository.findByAddressLikeIgnoreCase(city);
-		} else if (!StringUtils.isBlank(title)) {
+	public List<PropertyDtoV1> getAllProperties(String addressKeyword, SellingType type, String title) {
 
-			properties = propertyRepository.findByTitleLikeIgnoreCase(title);
+		if (StringUtils.isNotBlank(addressKeyword) && type != null) {
+			return propertyMapper.toDto(propertyRepository.findByAddressAndSellingType(addressKeyword, type));
+		} else if (StringUtils.isNotBlank(addressKeyword)) {
+			return propertyMapper.toDto(propertyRepository.findByAddress(addressKeyword));
 		} else if (type != null) {
-			properties = propertyRepository.findBySellingType(type);
+			return propertyMapper.toDto(propertyRepository.findBySellingType(type));
 		} else {
-			properties = propertyRepository.findAll();
+			return propertyMapper.toDto(propertyRepository.findAll());
 		}
 
-		return propertyMapper.toDto(properties);
 	}
 
 	@Override

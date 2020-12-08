@@ -1,5 +1,7 @@
 package com.example.find.property.model;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,11 +12,12 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@Document(collection  = "Address")
 public class Address {
 
 	private String city;
 	
-	private String Country;
+	private String country;
 	
 	private String town;
 	

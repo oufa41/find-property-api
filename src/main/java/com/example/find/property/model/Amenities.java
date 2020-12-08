@@ -6,6 +6,11 @@ import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * 
+ * @author aabdelraouf
+ *
+ */
 @Getter
 @Setter
 public class Amenities {

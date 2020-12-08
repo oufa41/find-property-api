@@ -6,6 +6,11 @@ import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * 
+ * @author aabdelraouf
+ *
+ */
 @Data
 @NoArgsConstructor
 @ApiModel(value = "Agent", description = "Property Agent DTO")
