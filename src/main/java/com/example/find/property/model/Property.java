@@ -21,6 +21,7 @@ public class Property {
 	@Id
 	private int id;
 
+	
 	private String title;
 
 	private SellingType sellingType;
