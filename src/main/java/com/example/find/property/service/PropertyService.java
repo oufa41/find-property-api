@@ -59,4 +59,6 @@ public interface PropertyService {
 	 */
 	public PropertyDtoV1 updatePropertyDtoV1(final int id, final PropertyDtoV1 property);
 
+	
+	public List<PropertyDtoV1> getAllProperties(String keyword);
 }

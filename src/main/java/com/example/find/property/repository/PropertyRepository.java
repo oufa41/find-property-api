@@ -2,6 +2,8 @@ package com.example.find.property.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Sort;
+import org.springframework.data.mongodb.core.query.TextCriteria;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
@@ -50,6 +52,13 @@ public interface PropertyRepository extends MongoRepository<Property, Integer> {
 //	List<Property> findByTitleLikeIgnoreCase(String title);
 //
 //	List<Property> findByAddressCityIgnoreCase(String city);
+	
+	// Execute a full-text search and define sorting dynamically
+	 
+	List<Property> findAllBy(TextCriteria criteria);
+	
+	List<Property> findByTitleOrderByScoreDesc(String title, TextCriteria criteria);
+
 
 
 }

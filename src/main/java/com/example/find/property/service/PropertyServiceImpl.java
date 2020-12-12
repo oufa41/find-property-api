@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.query.TextCriteria;
 import org.springframework.stereotype.Service;
 
 import com.example.find.property.dto.AddressDtoV1;
@@ -87,6 +88,15 @@ public class PropertyServiceImpl implements PropertyService {
 			throw new RecordNotFoundException(String.format(NOT_FOUND_MESSAGE, id));
 		}
 
+	}
+
+	@Override
+	public List<PropertyDtoV1> getAllProperties(String keyword) {
+		// TODO Auto-generated method stub
+		
+		TextCriteria criteria = TextCriteria.forDefaultLanguage().matchingAny(keyword);
+		
+		return  propertyMapper.toDto(propertyRepository.findAllBy(criteria));
 	}
 
 }
